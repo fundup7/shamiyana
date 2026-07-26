@@ -78,51 +78,60 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-[#FBF6ED] flex flex-col min-h-screen font-sans px-7">
-      <div className="pt-8 pb-4">
-        <Link href="/" className="w-10 h-10 flex items-center justify-start text-[#1F1F1F]">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+    <div className="bg-[#FAF7F2] flex flex-col min-h-screen font-sans">
+      {/* Top nav */}
+      <div className="px-5 pt-5 pb-3">
+        <Link href="/" className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
+          <svg className="w-5 h-5 text-[#333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
         </Link>
       </div>
 
-      <div className="flex-1 flex flex-col justify-start pt-6 pb-20">
-        <div className="w-[72px] h-[72px] bg-[#F59032] rounded-2xl flex items-center justify-center mb-8 shadow-sm">
-          {/* Tent Icon SVG */}
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 21h18"></path>
-            <path d="M12 5l9 16"></path>
-            <path d="M12 5l-9 16"></path>
-            <path d="M12 5v16"></path>
-            <path d="M12 5V2l3 1.5L12 5"></path>
-            <path d="M9 14l3-2 3 2"></path>
+      <div className="flex-1 flex flex-col px-6 pt-6 pb-20">
+        {/* Logo */}
+        <div className="w-16 h-16 bg-[#F59032] rounded-2xl flex items-center justify-center mb-8 shadow-md shadow-orange-200">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 21h18"/><path d="M12 5l9 16"/><path d="M12 5l-9 16"/><path d="M12 5v16"/>
+            <path d="M12 5V2l3 1.5L12 5"/><path d="M9 14l3-2 3 2"/>
           </svg>
         </div>
         
-        <div className="mb-4 space-y-1">
-          <h2 className="text-[28px] font-extrabold text-[#1F1F1F] leading-[1.1] tracking-tight">ಮರಳಿ ಸುಸ್ವಾಗತ,</h2>
-          <h2 className="text-[28px] font-extrabold text-[#1F1F1F] leading-[1.1] tracking-tight">ಪೂರೈಕೆದಾರರೇ</h2>
-          <h1 className="text-[18px] font-bold text-[#1F1F1F] leading-snug pt-1">Welcome back, Supplier.</h1>
+        {/* Headings */}
+        <div className="mb-2">
+          <h1 className="text-[30px] font-extrabold text-[#1A1A1A] leading-[1.1] tracking-tight">
+            Welcome back
+          </h1>
+          <p className="text-[16px] text-[#888] mt-1.5 font-medium">ಮರಳಿ ಸುಸ್ವಾಗತ, ಪೂರೈಕೆದಾರರೇ</p>
         </div>
 
-        <p className="text-[14px] text-[#1F1F1F] font-medium mb-8 max-w-[300px] leading-relaxed">
-          Log in to manage your inventory and bookings.
+        <p className="text-[14px] text-[#777] mb-8 leading-relaxed max-w-[320px]">
+          Log in to manage your inventory and connect with customers.
         </p>
 
+        {/* Error */}
         {authError && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold leading-relaxed">
-            ⚠️ {authError}
+          <div className="mb-5 p-4 bg-red-50 border border-red-100 rounded-2xl text-red-600 text-[13px] font-medium leading-relaxed flex items-start gap-3">
+            <span className="text-lg mt-[-2px]">⚠️</span>
+            <span>{authError}</span>
           </div>
         )}
         
+        {/* Buttons */}
         <div className="space-y-3">
           <button 
             onClick={handleGoogleLogin} 
             disabled={loading || demoLoading}
-            className="w-full bg-[#F59032] hover:bg-[#E88022] text-white font-bold py-3.5 rounded-xl shadow-md flex items-center justify-center gap-3 transition active:scale-95 disabled:opacity-50 text-[14px]"
+            className="w-full bg-[#1A1A1A] hover:bg-[#333] text-white font-semibold py-4 rounded-2xl shadow-sm flex items-center justify-center gap-3 transition active:scale-[0.98] disabled:opacity-50 text-[15px]"
           >
-            {loading ? "Connecting to Google..." : (
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Connecting...
+              </span>
+            ) : (
               <>
-                <svg className="w-5 h-5 bg-white rounded-full p-0.5" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                   <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -133,23 +142,30 @@ export default function Login() {
             )}
           </button>
 
-          <div className="relative flex py-2 items-center">
-            <div className="flex-grow border-t border-gray-300"></div>
-            <span className="flex-shrink mx-3 text-[11px] text-gray-500 font-bold uppercase tracking-wider">or fast access</span>
-            <div className="flex-grow border-t border-gray-300"></div>
+          <div className="relative flex py-3 items-center">
+            <div className="flex-grow border-t border-gray-200" />
+            <span className="flex-shrink mx-4 text-[11px] text-[#aaa] font-semibold uppercase tracking-widest">or</span>
+            <div className="flex-grow border-t border-gray-200" />
           </div>
 
           <button 
             onClick={handleDemoLogin} 
             disabled={loading || demoLoading}
-            className="w-full bg-white border border-[#F59032] text-[#F59032] hover:bg-[#FDF8F0] font-bold py-3 rounded-xl shadow-sm flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-50 text-[13px]"
+            className="w-full bg-white border border-gray-200 text-[#333] hover:border-[#F59032] hover:text-[#F59032] font-semibold py-4 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition active:scale-[0.98] disabled:opacity-50 text-[14px]"
           >
-            {demoLoading ? "Logging in..." : "⚡ Quick Demo Supplier Login (1-Click)"}
+            {demoLoading ? (
+              <span className="flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-[#F59032] border-t-transparent rounded-full animate-spin" />
+                Logging in...
+              </span>
+            ) : (
+              <>⚡ Quick Demo Login</>
+            )}
           </button>
         </div>
         
-        <p className="text-[13px] text-[#505762] mt-6 font-medium">
-          ಖಾತೆ ಇಲ್ಲವೇ? Don't have an account? <Link href="/" className="text-[#F59032] font-bold hover:underline">Apply here</Link>
+        <p className="text-[13px] text-[#999] mt-8 text-center">
+          Don&apos;t have an account? <Link href="/" className="text-[#F59032] font-semibold hover:underline">Apply here</Link>
         </p>
       </div>
     </div>
