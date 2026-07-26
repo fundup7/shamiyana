@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { marigold: '#FFB300', vermillion: '#C62828', dark: '#1a1a1a' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        /* Bottom Sheet Animation */
+        .bottom-sheet { transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bottom-sheet.open { transform: translateY(0); }
+        .backdrop { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .backdrop.open { opacity: 1; pointer-events: auto; }
+    </style>
+</head>
+<body class="bg-gray-50 pb-24">
+
+    <!-- Mobile Dashboard Header -->
+    <div class="bg-vermillion px-4 pt-12 pb-16 text-white rounded-b-3xl shadow-sm">
+        <div class="flex justify-between items-center mb-6">
+            <div>
+                <p class="text-white/80 text-xs font-bold uppercase tracking-wide">Supplier Dashboard</p>
+                <h1 class="text-xl font-bold">Manjunath G.</h1>
+            </div>
+            <img src="https://ui-avatars.com/api/?name=Manjunath&background=fff&color=C62828" class="w-10 h-10 rounded-full border-2 border-white/20">
+        </div>
+        
+        <p class="text-white/80 text-sm font-medium">This Month</p>
+        <h2 class="text-3xl font-bold">₹45,200</h2>
+    </div>
+
+    <div class="px-4 -mt-8 relative z-10 space-y-4">
+        
+        <!-- Action Cards -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+            <h3 class="font-bold text-gray-900 text-sm mb-3"><i class="fa-solid fa-bell text-marigold mr-1"></i> New Request</h3>
+            <div class="bg-gray-50 rounded-xl p-3 border border-gray-100">
+                <div class="flex justify-between mb-2">
+                    <p class="font-bold text-gray-900 text-sm">Rahul (Keshwapur)</p>
+                    <span class="text-[10px] font-bold bg-marigold/20 text-yellow-800 px-2 py-0.5 rounded">15th Aug</span>
+                </div>
+                <p class="text-xs text-gray-500 mb-3">Needs: 200 Chairs, 1 Tent</p>
+                <div class="flex gap-2">
+                    <button class="flex-1 bg-green-500 text-white font-bold py-2 rounded-lg text-xs">Accept</button>
+                    <button class="flex-1 bg-red-50 text-red-500 font-bold py-2 rounded-lg text-xs">Decline</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory List -->
+        <div>
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-bold text-gray-900">My Inventory</h3>
+            </div>
+            <div id="inventory-list" class="space-y-3">
+                <!-- Javascript will inject items here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button for Mobile -->
+    <button onclick="toggleBottomSheet()" class="fixed bottom-6 right-6 w-14 h-14 bg-vermillion text-white rounded-full shadow-lg shadow-red-200 flex items-center justify-center text-xl active:scale-95 transition z-40">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <!-- Bottom Sheet Modal (Mobile First UI) -->
+    <div id="backdrop" class="backdrop fixed inset-0 bg-black/40 z-50" onclick="toggleBottomSheet()"></div>
+    <div id="upload-sheet" class="bottom-sheet fixed bottom-0 left-0 w-full bg-white rounded-t-3xl z-50 pt-2 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+        <div class="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-4"></div>
+        <div class="px-6 pb-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Add Inventory Item</h3>
+            
+            <div class="bg-gray-50 border border-gray-200 border-dashed rounded-xl p-4 text-center mb-4">
+                <i class="fa-solid fa-camera text-2xl text-gray-400 mb-1"></i>
+                <p class="text-xs font-bold text-gray-500">Tap to upload photo</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold text-gray-500 uppercase">Item Name</label>
+                    <input type="text" id="itemName" class="w-full border-b-2 border-gray-200 py-2 focus:border-vermillion outline-none font-bold text-gray-900 bg-transparent">
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase">Total Stock</label>
+                        <input type="number" id="itemStock" class="w-full border-b-2 border-gray-200 py-2 focus:border-vermillion outline-none font-bold text-gray-900 bg-transparent" pattern="[0-9]*" inputmode="numeric">
+                    </div>
+                    <div class="flex-1">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase">Price (₹/Day)</label>
+                        <input type="number" id="itemPrice" class="w-full border-b-2 border-gray-200 py-2 focus:border-vermillion outline-none font-bold text-gray-900 bg-transparent" pattern="[0-9]*" inputmode="numeric">
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="mockUpload()" class="w-full bg-vermillion text-white font-bold py-4 rounded-xl mt-6 active:scale-95 transition">
+                Add to Database
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let mockDatabase = [
+            { id: 1, name: "White Plastic Chairs", stock: 500, price: 5, img: "./images/chairs.png" },
+            { id: 2, name: "Steel Meal Plates", stock: 1000, price: 3, img: "./images/plates.png" }
+        ];
+
+        function renderDatabase() {
+            const container = document.getElementById('inventory-list');
+            container.innerHTML = '';
+            mockDatabase.forEach(item => {
+                container.innerHTML += `
+                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3">
+                        <img src="${item.img}" class="w-16 h-16 rounded-xl object-cover bg-gray-50 shrink-0">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm text-gray-900 leading-tight">${item.name}</h4>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Stock: ${item.stock}</p>
+                            <p class="text-xs font-bold text-vermillion mt-1">₹${item.price} <span class="text-[10px] text-gray-400 font-normal">/day</span></p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleBottomSheet() {
+            document.getElementById('upload-sheet').classList.toggle('open');
+            document.getElementById('backdrop').classList.toggle('open');
+            // reset form
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemStock').value = '';
+            document.getElementById('itemPrice').value = '';
+        }
+
+        function mockUpload() {
+            const name = document.getElementById('itemName').value;
+            const stock = document.getElementById('itemStock').value;
+            const price = document.getElementById('itemPrice').value;
+            
+            if(!name) return alert("Enter item name");
+
+            mockDatabase.unshift({
+                id: Date.now(), name, stock: parseInt(stock), price: parseInt(price), img: "./images/gallery3.png"
+            });
+
+            toggleBottomSheet();
+            renderDatabase();
+        }
+
+        renderDatabase();
+    </script>
+</body>
+</html>

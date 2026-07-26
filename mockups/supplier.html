@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Manjunath Shamiyana - Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { marigold: '#FFB300', vermillion: '#C62828', whatsapp: '#25D366' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-50 pb-20">
+
+    <!-- Hero Image with Floating Back Button -->
+    <div class="relative w-full h-72">
+        <a href="index.html" class="absolute top-4 left-4 z-50 w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-gray-900 shadow-md">
+            <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <img src="./images/hero.png" class="w-full h-full object-cover">
+        <div class="absolute bottom-4 right-4 bg-gray-900/70 backdrop-blur px-3 py-1.5 rounded-full text-xs font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-image"></i> 12 Photos
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg-white rounded-t-3xl -mt-6 relative z-20 pt-6 px-4 pb-4">
+        <div class="flex justify-between items-start mb-2">
+            <h1 class="text-2xl font-bold text-gray-900 leading-tight w-3/4">Manjunath Shamiyana & Caterers</h1>
+            <div class="bg-green-100 text-green-700 px-2 py-1 rounded-lg flex items-center font-bold">
+                4.8 <i class="fa-solid fa-star text-[10px] ml-1"></i>
+            </div>
+        </div>
+        <p class="text-xs text-gray-500 font-medium mb-4"><i class="fa-solid fa-location-dot mr-1"></i> Gokul Road, Hubli (1.2 km)</p>
+        
+        <!-- Owner Card -->
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-3 flex items-center mb-6">
+            <img src="https://ui-avatars.com/api/?name=Manjunath&background=C62828&color=fff" class="w-12 h-12 rounded-full mr-3">
+            <div class="flex-1">
+                <p class="text-[10px] uppercase font-bold text-vermillion tracking-wide">Verified Owner</p>
+                <p class="font-bold text-sm text-gray-900">Manjunath G.</p>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                <i class="fa-solid fa-shield-check"></i>
+            </div>
+        </div>
+
+        <!-- Horizontal Gallery -->
+        <h3 class="font-bold text-gray-900 mb-3">Gallery</h3>
+        <div class="flex overflow-x-auto gap-3 pb-4 snap-x hide-scrollbar mb-2">
+            <img src="./images/gallery1.png" class="w-48 h-32 object-cover rounded-xl snap-start shrink-0 border border-gray-100">
+            <img src="./images/gallery2.png" class="w-48 h-32 object-cover rounded-xl snap-start shrink-0 border border-gray-100">
+            <img src="./images/gallery3.png" class="w-48 h-32 object-cover rounded-xl snap-start shrink-0 border border-gray-100">
+        </div>
+
+        <!-- Inventory -->
+        <h3 class="font-bold text-gray-900 mb-3">Available Items</h3>
+        <div class="space-y-3 mb-6">
+            <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <div>
+                    <p class="font-bold text-sm text-gray-900">White Plastic Chairs</p>
+                    <p class="text-[11px] text-gray-500 font-medium">Available: 500+</p>
+                </div>
+                <p class="font-bold text-vermillion text-sm">₹5/day</p>
+            </div>
+            <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <div>
+                    <p class="font-bold text-sm text-gray-900">Steel Meal Plates</p>
+                    <p class="text-[11px] text-gray-500 font-medium">Available: 1000+</p>
+                </div>
+                <p class="font-bold text-vermillion text-sm">₹3/day</p>
+            </div>
+            <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <div>
+                    <p class="font-bold text-sm text-gray-900">Standard Shamiyana Tent</p>
+                    <p class="text-[11px] text-gray-500 font-medium">For 100 people</p>
+                </div>
+                <p class="font-bold text-vermillion text-sm">₹1500/day</p>
+            </div>
+        </div>
+        
+        <!-- Location Map -->
+        <h3 class="font-bold text-gray-900 mb-3">Location</h3>
+        <div class="w-full h-32 rounded-xl bg-gray-200 border border-gray-100 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 opacity-50 bg-[url('https://maps.wikimedia.org/osm-intl/14/11739/7542.png')] bg-cover bg-center"></div>
+            <i class="fa-solid fa-location-dot text-3xl text-vermillion relative z-10 drop-shadow-md"></i>
+        </div>
+    </div>
+
+    <!-- Mobile Sticky Action Bar (Edge to edge, safe area) -->
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 p-3 pb-safe shadow-[0_-5px_15px_rgba(0,0,0,0.05)] z-50 flex gap-3">
+        <button class="flex-1 bg-white border border-vermillion text-vermillion font-bold py-3.5 rounded-xl text-sm flex justify-center items-center gap-2">
+            <i class="fa-solid fa-phone"></i> Call
+        </button>
+        <button class="flex-[1.5] bg-whatsapp text-white font-bold py-3.5 rounded-xl text-sm flex justify-center items-center gap-2 shadow-sm shadow-green-200">
+            <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp Chat
+        </button>
+    </div>
+
+</body>
+</html>
