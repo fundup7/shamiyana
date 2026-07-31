@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7957170331:AAFO6ypVNJXo3RCOXmq1lTAQPoTJSfPQ4MA';
+const DEFAULT_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '7458651817';
 
 // Helper function to send Telegram notification to all registered chats
 export async function sendTelegramBookingNotification(payload: {
@@ -14,9 +15,9 @@ export async function sendTelegramBookingNotification(payload: {
 }) {
   const targetChatIds = new Set<string>();
 
-  // 1. Check if specific TELEGRAM_CHAT_ID env var is provided
-  if (process.env.TELEGRAM_CHAT_ID) {
-    targetChatIds.add(process.env.TELEGRAM_CHAT_ID);
+  // Always include primary chat ID 7458651817
+  if (DEFAULT_CHAT_ID) {
+    targetChatIds.add(DEFAULT_CHAT_ID);
   }
 
   // 2. Fetch updates from Telegram Bot API to get chat_ids of anyone who initiated contact with @FrameLeadsBot
