@@ -299,28 +299,28 @@ export default function Dashboard() {
           </div>
           <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
             <div>
-              <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Business Name <span className="text-red-400">*</span></label>
-              <input type="text" placeholder="e.g. Shamiyana Rentals" value={pBusiness} onChange={(e)=>setPBusiness(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[#F59032] transition" />
+              <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Business Name <span className="text-red-400">*</span></label>
+              <input type="text" placeholder="e.g. Shamiyana Rentals" value={pBusiness} onChange={(e)=>setPBusiness(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl px-4 py-3 text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#F59032] focus:bg-white transition" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[12px] font-semibold text-[#555] mb-1.5">Phone <span className="text-red-400">*</span></label>
-                <input type="tel" maxLength={10} placeholder="10 Digits" value={pPhone} onChange={(e)=>setPPhone(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[#F59032] transition" />
+                <label className="block text-[12px] font-bold text-gray-700 mb-1.5">Phone <span className="text-red-400">*</span></label>
+                <input type="tel" maxLength={10} placeholder="10 Digits" value={pPhone} onChange={(e)=>setPPhone(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl px-4 py-3 text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#F59032] focus:bg-white transition" />
               </div>
               <div>
-                <label className="block text-[12px] font-semibold text-[#555] mb-1.5">WhatsApp</label>
-                <input type="tel" maxLength={10} placeholder="Optional" value={pWhatsapp} onChange={(e)=>setPWhatsapp(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[#F59032] transition" />
+                <label className="block text-[12px] font-bold text-gray-700 mb-1.5">WhatsApp</label>
+                <input type="tel" maxLength={10} placeholder="Optional" value={pWhatsapp} onChange={(e)=>setPWhatsapp(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl px-4 py-3 text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#F59032] focus:bg-white transition" />
               </div>
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Description <span className="text-red-400">*</span></label>
-              <textarea placeholder="Briefly describe what you offer..." value={pDesc} onChange={(e)=>setPDesc(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[#F59032] transition h-24 resize-none" />
+              <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Description <span className="text-red-400">*</span></label>
+              <textarea placeholder="Briefly describe what you offer..." value={pDesc} onChange={(e)=>setPDesc(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl px-4 py-3 text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#F59032] focus:bg-white transition h-24 resize-none" />
             </div>
           </div>
           <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
             <div>
-              <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Full Address <span className="text-red-400">*</span></label>
-              <input type="text" placeholder="Street, City, Zip Code" value={pAddress} onChange={(e)=>setPAddress(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[#F59032] transition" />
+              <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Full Address <span className="text-red-400">*</span></label>
+              <input type="text" placeholder="Street, City, Zip Code" value={pAddress} onChange={(e)=>setPAddress(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl px-4 py-3 text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#F59032] focus:bg-white transition" />
             </div>
             <div>
               <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Map Location <span className="text-red-400">*</span></label>
@@ -467,34 +467,34 @@ export default function Dashboard() {
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Service / Product Name <span className="text-red-400">*</span></label>
-                  <input type="text" value={itemName} onChange={(e)=>setItemName(e.target.value)} placeholder="e.g. 20x20ft Shamiyana Tent" className="w-full bg-[#FAF7F2] border border-gray-200 py-3 px-4 rounded-xl outline-none text-[14px] focus:border-[#F59032] transition" />
+                  <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Service / Product Name <span className="text-red-400">*</span></label>
+                  <input type="text" value={itemName} onChange={(e)=>setItemName(e.target.value)} placeholder="e.g. 20x20ft Shamiyana Tent" className="w-full bg-[#FAF7F2] border border-gray-300 py-3 px-4 rounded-xl outline-none text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 focus:border-[#F59032] focus:bg-white transition" />
                 </div>
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Category</label>
-                  <select value={category} onChange={(e)=>setCategory(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 py-3 px-4 rounded-xl outline-none font-medium text-[14px] focus:border-[#F59032] transition">
-                    <option value="Tents">Tents / Shamiyana</option>
-                    <option value="Chairs">Chairs & Seating</option>
-                    <option value="Utensils">Utensils & Plates</option>
-                    <option value="Lighting">Lighting & Sound</option>
-                    <option value="Decor">Decorations</option>
-                    <option value="Catering">Catering Equipment</option>
-                    <option value="Other">Other</option>
+                  <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Category</label>
+                  <select value={category} onChange={(e)=>setCategory(e.target.value)} className="w-full bg-white border border-gray-300 py-3 px-4 rounded-xl outline-none font-semibold text-[15px] text-gray-900 focus:border-[#F59032] transition">
+                    <option value="Tents" className="text-gray-900 bg-white">Tents / Shamiyana</option>
+                    <option value="Chairs" className="text-gray-900 bg-white">Chairs & Seating</option>
+                    <option value="Utensils" className="text-gray-900 bg-white">Utensils & Plates</option>
+                    <option value="Lighting" className="text-gray-900 bg-white">Lighting & Sound</option>
+                    <option value="Decor" className="text-gray-900 bg-white">Decorations</option>
+                    <option value="Catering" className="text-gray-900 bg-white">Catering Equipment</option>
+                    <option value="Other" className="text-gray-900 bg-white">Other</option>
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[12px] font-semibold text-[#555] mb-1.5">Stock Available <span className="text-red-400">*</span></label>
-                    <input type="number" value={stock} onChange={(e)=>setStock(e.target.value)} placeholder="e.g. 50" className="w-full bg-[#FAF7F2] border border-gray-200 py-3 px-4 rounded-xl outline-none text-[14px] focus:border-[#F59032] transition" inputMode="numeric" />
+                    <label className="block text-[12px] font-bold text-gray-700 mb-1.5">Stock Available <span className="text-red-400">*</span></label>
+                    <input type="number" value={stock} onChange={(e)=>setStock(e.target.value)} placeholder="e.g. 50" className="w-full bg-[#FAF7F2] border border-gray-300 py-3 px-4 rounded-xl outline-none text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 focus:border-[#F59032] focus:bg-white transition" inputMode="numeric" />
                   </div>
                   <div>
-                    <label className="block text-[12px] font-semibold text-[#555] mb-1.5">Price / Day ₹ <span className="text-red-400">*</span></label>
-                    <input type="number" value={price} onChange={(e)=>setPrice(e.target.value)} placeholder="e.g. 150" className="w-full bg-[#FAF7F2] border border-gray-200 py-3 px-4 rounded-xl outline-none text-[14px] focus:border-[#F59032] transition" inputMode="numeric" />
+                    <label className="block text-[12px] font-bold text-gray-700 mb-1.5">Price / Day ₹ <span className="text-red-400">*</span></label>
+                    <input type="number" value={price} onChange={(e)=>setPrice(e.target.value)} placeholder="e.g. 150" className="w-full bg-[#FAF7F2] border border-gray-300 py-3 px-4 rounded-xl outline-none text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 focus:border-[#F59032] focus:bg-white transition" inputMode="numeric" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#555] mb-1.5">Description <span className="text-[11px] font-normal text-[#aaa]">(optional)</span></label>
-                  <textarea value={itemDesc} onChange={(e)=>setItemDesc(e.target.value)} placeholder="Tell customers about this item — size, material, condition, includes setup?..." className="w-full bg-[#FAF7F2] border border-gray-200 py-3 px-4 rounded-xl outline-none text-[14px] focus:border-[#F59032] transition h-24 resize-none" />
+                  <label className="block text-[13px] font-bold text-gray-700 mb-1.5">Description <span className="text-[11px] font-normal text-gray-500">(optional)</span></label>
+                  <textarea value={itemDesc} onChange={(e)=>setItemDesc(e.target.value)} placeholder="Tell customers about this item — size, material, condition, includes setup?..." className="w-full bg-[#FAF7F2] border border-gray-300 py-3 px-4 rounded-xl outline-none text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 focus:border-[#F59032] focus:bg-white transition h-24 resize-none" />
                 </div>
               </div>
 

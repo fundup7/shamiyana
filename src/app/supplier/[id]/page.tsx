@@ -271,16 +271,16 @@ export default function SupplierProfile() {
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="text-[12px] font-semibold text-[#888] uppercase tracking-wide">Your Name</label>
-                  <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="e.g. Ramesh Kumar" className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl py-3 px-4 focus:border-[#F59032] outline-none text-[14px] mt-1.5 transition" />
+                  <label className="text-[12px] font-bold text-gray-700 uppercase tracking-wide">Your Name</label>
+                  <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="e.g. Ramesh Kumar" className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl py-3 px-4 focus:border-[#F59032] outline-none text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 mt-1.5 transition" />
                 </div>
                 <div>
-                  <label className="text-[12px] font-semibold text-[#888] uppercase tracking-wide">Phone Number</label>
-                  <input type="tel" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="+91" className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl py-3 px-4 focus:border-[#F59032] outline-none text-[14px] mt-1.5 transition" />
+                  <label className="text-[12px] font-bold text-gray-700 uppercase tracking-wide">Phone Number</label>
+                  <input type="tel" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="+91 9876543210" className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl py-3 px-4 focus:border-[#F59032] outline-none text-[15px] font-semibold text-gray-900 placeholder:text-gray-400 mt-1.5 transition" />
                 </div>
                 <div>
-                  <label className="text-[12px] font-semibold text-[#888] uppercase tracking-wide">Event Date</label>
-                  <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-200 rounded-xl py-3 px-4 focus:border-[#F59032] outline-none text-[14px] mt-1.5 transition" />
+                  <label className="text-[12px] font-bold text-gray-700 uppercase tracking-wide">Event Date</label>
+                  <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} className="w-full bg-[#FAF7F2] border border-gray-300 rounded-xl py-3 px-4 focus:border-[#F59032] outline-none text-[15px] font-semibold text-gray-900 mt-1.5 transition" />
                 </div>
               </div>
               <button onClick={handleSubmitBooking} disabled={submitting} className="w-full bg-[#F59032] text-white font-bold py-4 rounded-2xl mt-5 active:scale-[0.98] transition disabled:opacity-50 shadow-sm text-[15px]">
