@@ -33,7 +33,24 @@ export default function Dashboard() {
   const [pLng, setPLng] = useState<number | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
 
-  useEffect(() => { checkUser(); }, []);
+  useEffect(() => {
+    checkUser();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        setUser(session.user);
+        supabase.from("suppliers").select("*").eq("id", session.user.id).single().then(({ data: profileData }) => {
+          if (!profileData || !profileData.phone_number) {
+            setNeedsProfileSetup(true);
+            if (profileData) setPBusiness(profileData.business_name || "");
+          } else {
+            setProfile(profileData);
+            fetchInventory(session.user.id);
+          }
+        });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   const showError = (msg: string) => { setErrorMsg(msg); setTimeout(() => setErrorMsg(""), 4000); };
 

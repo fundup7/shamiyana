@@ -16,16 +16,28 @@ export default function Login() {
       }
     };
     checkUser();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        window.location.href = '/dashboard';
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleGoogleLogin = async () => {
     setLoading(true);
     setAuthError(null);
     try {
+      const redirectUrl = typeof window !== 'undefined'
+        ? `${window.location.origin}/dashboard`
+        : 'https://shamiyana.vercel.app/dashboard';
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/dashboard`
+          redirectTo: redirectUrl
         }
       });
       if (error) {
@@ -33,7 +45,7 @@ export default function Login() {
         setLoading(false);
       }
     } catch (err: any) {
-      setAuthError("Google OAuth error: Please ensure Google provider is enabled in your Supabase Dashboard under Authentication -> Providers.");
+      setAuthError("Google OAuth error: Please ensure your Vercel URL is added to Supabase -> Auth -> Redirect URLs.");
       setLoading(false);
     }
   };
