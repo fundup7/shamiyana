@@ -4,6 +4,8 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import MessageModal from "@/components/MessageModal";
+
 export default function Dashboard() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
@@ -20,6 +22,7 @@ export default function Dashboard() {
   const [uploading, setUploading] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const [existingImages, setExistingImages] = useState<string[]>([]);
+  const [itemToDelete, setItemToDelete] = useState<any | null>(null);
   const [pBusiness, setPBusiness] = useState("");
   const [pPhone, setPPhone] = useState("");
   const [pWhatsapp, setPWhatsapp] = useState("");
@@ -179,11 +182,12 @@ export default function Dashboard() {
     finally { setUploading(false); }
   };
 
-  const handleDeleteItem = async (itemId: string) => {
-    if (!confirm("Delete this item permanently?")) return;
-    const { error } = await supabase.from("inventory").delete().eq("id", itemId);
+  const confirmDeleteItem = async () => {
+    if (!itemToDelete) return;
+    const { error } = await supabase.from("inventory").delete().eq("id", itemToDelete.id);
     if (error) showError(error.message);
     else fetchInventory(user.id);
+    setItemToDelete(null);
   };
 
   const ErrorPopup = () => errorMsg ? (
@@ -364,7 +368,7 @@ export default function Dashboard() {
                   Edit
                 </button>
                 <div className="w-px bg-gray-100" />
-                <button onClick={() => handleDeleteItem(item.id)} className="flex-1 py-2.5 text-[12px] font-semibold text-red-400 flex items-center justify-center gap-1.5 hover:bg-red-50 transition">
+                <button onClick={() => setItemToDelete(item)} className="flex-1 py-2.5 text-[12px] font-semibold text-red-400 flex items-center justify-center gap-1.5 hover:bg-red-50 transition">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
                   Delete
                 </button>
@@ -451,7 +455,7 @@ export default function Dashboard() {
                 {uploading ? (editingItem ? "Updating..." : "Saving...") : (editingItem ? "Save Changes" : "Add Item")}
               </button>
               {editingItem && (
-                <button onClick={() => { handleDeleteItem(editingItem.id); setIsModalOpen(false); }} className="w-full text-red-400 font-semibold py-3 rounded-2xl mt-2 text-[13px] hover:bg-red-50 transition">
+                <button onClick={() => { setItemToDelete(editingItem); setIsModalOpen(false); }} className="w-full text-red-400 font-semibold py-3 rounded-2xl mt-2 text-[13px] hover:bg-red-50 transition">
                   Delete This Item
                 </button>
               )}
@@ -459,6 +463,19 @@ export default function Dashboard() {
           </div>
         </>
       )}
+
+      {/* Confirmation Modal for Delete */}
+      <MessageModal
+        isOpen={!!itemToDelete}
+        type="confirm"
+        title="Delete Item?"
+        message={`Are you sure you want to delete "${itemToDelete?.item_name_en || 'this item'}" permanently? This action cannot be undone.`}
+        confirmText="Yes, Delete"
+        cancelText="Cancel"
+        onConfirm={confirmDeleteItem}
+        onClose={() => setItemToDelete(null)}
+      />
+
       <BottomNav active="profile" />
     </div>
   );

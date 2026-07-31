@@ -4,6 +4,8 @@ import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
+import MessageModal from "@/components/MessageModal";
+
 export default function SupplierProfile() {
   const params = useParams();
   const router = useRouter();
@@ -17,6 +19,11 @@ export default function SupplierProfile() {
   const [customerPhone, setCustomerPhone] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [modalState, setModalState] = useState<{ isOpen: boolean; type?: "success" | "error" | "info"; title: string; message: string }>({
+    isOpen: false,
+    title: "",
+    message: "",
+  });
 
   useEffect(() => { if (supplierId) fetchSupplierData(); }, [supplierId]);
 
@@ -46,7 +53,14 @@ export default function SupplierProfile() {
   }, 0);
 
   const handleSubmitBooking = async () => {
-    if (!customerName || !customerPhone || !eventDate) return alert("Please fill out your Name, Phone, and Event Date.");
+    if (!customerName || !customerPhone || !eventDate) {
+      return setModalState({
+        isOpen: true,
+        type: "error",
+        title: "Missing Details",
+        message: "Please fill out your Name, 10-digit Phone Number, and Event Date before proceeding.",
+      });
+    }
     setSubmitting(true);
     const itemsRequested = Object.entries(cart).map(([id, qty]) => {
       const item = inventory.find(i => i.id === id);
@@ -57,8 +71,26 @@ export default function SupplierProfile() {
       event_date: eventDate, total_price: totalPrice, items_requested: itemsRequested, status: 'pending'
     }]);
     setSubmitting(false);
-    if (error) alert("Error: " + error.message);
-    else { alert("Booking Request Sent!"); setIsBookingModalOpen(false); setCart({}); setCustomerName(""); setCustomerPhone(""); setEventDate(""); }
+    if (error) {
+      setModalState({
+        isOpen: true,
+        type: "error",
+        title: "Booking Failed",
+        message: error.message || "Could not place booking request. Please try again.",
+      });
+    } else {
+      setIsBookingModalOpen(false);
+      setCart({});
+      setCustomerName("");
+      setCustomerPhone("");
+      setEventDate("");
+      setModalState({
+        isOpen: true,
+        type: "success",
+        title: "Booking Request Sent! 🎉",
+        message: `Your rental request for ${supplier?.business_name || "the supplier"} has been sent. The supplier will contact you at ${customerPhone} to confirm details.`,
+      });
+    }
   };
 
   if (loading) return <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center"><div className="w-8 h-8 border-3 border-[#F59032] border-t-transparent rounded-full animate-spin" /></div>;
@@ -240,6 +272,15 @@ export default function SupplierProfile() {
           </div>
         </>
       )}
+
+      {/* Message Modal */}
+      <MessageModal
+        isOpen={modalState.isOpen}
+        type={modalState.type}
+        title={modalState.title}
+        message={modalState.message}
+        onClose={() => setModalState(prev => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 }

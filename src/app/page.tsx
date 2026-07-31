@@ -94,13 +94,13 @@ export default function Home() {
     <div className="bg-[#FAF7F2] pb-28 min-h-screen font-sans text-[#1A1A1A]">
 
       {/* ─── Hero Section ─── */}
-      <div className="relative h-[340px] overflow-hidden">
+      <div className="relative h-[320px]">
         <img 
           src="/images/hero.png" 
           alt="Shamiyana event setup" 
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover rounded-b-3xl"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#FAF7F2]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#FAF7F2] rounded-b-3xl" />
 
         {/* Navbar on hero */}
         <div className="relative z-10 flex items-center justify-between px-5 pt-5">
@@ -112,15 +112,10 @@ export default function Home() {
             </div>
             <span className="font-bold text-white text-[18px] tracking-tight drop-shadow-sm">Shamiyana</span>
           </div>
-          <Link href="/login" className="w-9 h-9 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30">
-            <svg className="w-[18px] h-[18px]" fill="none" stroke="white" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-          </Link>
         </div>
 
         {/* Hero text */}
-        <div className="relative z-10 px-6 mt-10">
+        <div className="relative z-10 px-6 mt-8">
           <h1 className="text-white text-[32px] font-extrabold leading-[1.1] drop-shadow-lg">
             Plan Your<br/>Perfect Event
           </h1>
@@ -128,36 +123,36 @@ export default function Home() {
             ನಿಮ್ಮ ಕಾರ್ಯಕ್ರಮವನ್ನು ಯೋಜಿಸಿ
           </p>
         </div>
+      </div>
 
-        {/* Search bar — floats at bottom of hero */}
-        <div className="absolute bottom-[-24px] left-0 right-0 z-20 px-5">
-          <div className="bg-white rounded-2xl flex items-center h-[52px] shadow-lg shadow-black/8 border border-gray-100 overflow-hidden">
-            <svg className="w-[18px] h-[18px] text-[#F59032] ml-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input 
-              type="text" 
-              placeholder={PLACEHOLDERS[phIdx]}
-              value={searchQuery}
-              onChange={(e) => { setSearchQuery(e.target.value); if (e.target.value) setActiveCategory(""); }}
-              className="flex-1 min-w-0 px-3 bg-transparent border-none text-[14px] text-gray-900 outline-none placeholder:text-gray-400" 
-            />
-            {searchQuery && (
-              <button 
-                onClick={() => setSearchQuery("")} 
-                className="mr-3 text-gray-400 hover:text-gray-600 transition"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-          </div>
+      {/* Floating Search Bar (Positioned gracefully over hero bottom without clipping) */}
+      <div className="relative z-30 px-5 -mt-7">
+        <div className="bg-white rounded-2xl flex items-center h-[54px] shadow-xl shadow-black/10 border border-gray-100/80 px-4">
+          <svg className="w-[18px] h-[18px] text-[#F59032] shrink-0 mr-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input 
+            type="text" 
+            placeholder={PLACEHOLDERS[phIdx]}
+            value={searchQuery}
+            onChange={(e) => { setSearchQuery(e.target.value); if (e.target.value) setActiveCategory(""); }}
+            className="flex-1 min-w-0 bg-transparent border-none text-[14px] font-medium text-gray-900 outline-none placeholder:text-gray-400" 
+          />
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery("")} 
+              className="ml-2 text-gray-400 hover:text-gray-600 transition"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
       {/* ─── Categories ─── */}
-      <div className="pt-10 pb-2">
+      <div className="pt-5 pb-2">
         <div className="flex gap-2 px-5 overflow-x-auto no-scrollbar">
           {CATEGORIES.map(cat => (
             <button
