@@ -178,20 +178,50 @@ export default function Dashboard() {
       const mainImage = allUrls[0];
       const extraImages = allUrls.slice(1);
 
+      const fullPayload: any = {
+        item_name_en: itemName,
+        category,
+        total_stock: parseInt(stock),
+        price_per_day: parseFloat(price),
+        image_url: mainImage,
+        extra_images: extraImages,
+        description: itemDesc || null
+      };
+
       if (editingItem) {
-        const { error } = await supabase.from("inventory").update({
-          item_name_en: itemName, category, total_stock: parseInt(stock),
-          price_per_day: parseFloat(price), image_url: mainImage,
-          extra_images: extraImages, description: itemDesc || null
-        }).eq("id", editingItem.id);
-        if (error) throw error;
+        let { error } = await supabase.from("inventory").update(fullPayload).eq("id", editingItem.id);
+        if (error && error.message.includes("Could not find")) {
+          // Fallback if description or extra_images column is missing in Supabase schema cache
+          const fallbackPayload = {
+            item_name_en: itemName,
+            category,
+            total_stock: parseInt(stock),
+            price_per_day: parseFloat(price),
+            image_url: mainImage,
+          };
+          const res = await supabase.from("inventory").update(fallbackPayload).eq("id", editingItem.id);
+          if (res.error) throw res.error;
+        } else if (error) {
+          throw error;
+        }
       } else {
-        const { error } = await supabase.from("inventory").insert([{
-          supplier_id: user.id, item_name_en: itemName, category,
-          total_stock: parseInt(stock), price_per_day: parseFloat(price),
-          image_url: mainImage, extra_images: extraImages, description: itemDesc || null
-        }]);
-        if (error) throw error;
+        fullPayload.supplier_id = user.id;
+        let { error } = await supabase.from("inventory").insert([fullPayload]);
+        if (error && error.message.includes("Could not find")) {
+          // Fallback if description or extra_images column is missing in Supabase schema cache
+          const fallbackPayload = {
+            supplier_id: user.id,
+            item_name_en: itemName,
+            category,
+            total_stock: parseInt(stock),
+            price_per_day: parseFloat(price),
+            image_url: mainImage,
+          };
+          const res = await supabase.from("inventory").insert([fallbackPayload]);
+          if (res.error) throw res.error;
+        } else if (error) {
+          throw error;
+        }
       }
       setIsModalOpen(false);
       fetchInventory(user.id);
@@ -399,10 +429,10 @@ export default function Dashboard() {
       {/* ─── Add / Edit Item Modal ─── */}
       {isModalOpen && (
         <>
-          <div className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-          <div className="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl z-50 shadow-2xl">
-            <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mt-3 mb-3" />
-            <div className="px-6 pb-8 max-h-[85vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/60 z-[80] backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
+          <div className="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl z-[80] shadow-2xl flex flex-col max-h-[90vh]">
+            <div className="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mt-3 shrink-0" />
+            <div className="px-6 pt-2 pb-36 overflow-y-auto flex-1">
               <h3 className="text-[18px] font-bold mb-1">{editingItem ? "Edit Item" : "Add New Item"}</h3>
               <p className="text-[12px] text-[#999] mb-5">{editingItem ? "Update details, change photos, or adjust pricing." : "Add photos, set a price, and describe your service or product."}</p>
 
