@@ -2,27 +2,36 @@
 
 :root {
   --background: #faf7f2;
-  --foreground: #111827;
+  --foreground: #1e1b17;
+  --primary: #c04d31;
+  --primary-hover: #9f351c;
+  --primary-light: #fff6f4;
+  --border-color: #e8e1da;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: var(--font-work-sans), Work Sans, system-ui, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-archivo-narrow), Archivo Narrow, sans-serif;
+  letter-spacing: -0.01em;
 }
 
 /* Enforce crisp high-contrast text on all form controls across light/dark OS modes */
 input, select, textarea, button {
-  color: #111827 !important;
+  color: #1e1b17 !important;
 }
 
 input::placeholder, textarea::placeholder {
-  color: #9CA3AF !important;
+  color: #8b716b !important;
   opacity: 1;
 }
 
 select option {
   background-color: #ffffff !important;
-  color: #111827 !important;
+  color: #1e1b17 !important;
 }
