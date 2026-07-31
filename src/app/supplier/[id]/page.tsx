@@ -79,6 +79,24 @@ export default function SupplierProfile() {
         message: error.message || "Could not place booking request. Please try again.",
       });
     } else {
+      // Trigger Telegram notification in background
+      try {
+        fetch("/api/telegram-notify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            customerName,
+            customerPhone,
+            eventDate,
+            totalPrice,
+            itemsRequested,
+            supplierName: supplier?.business_name
+          })
+        }).catch(err => console.error("Telegram notify error:", err));
+      } catch (e) {
+        console.error("Telegram trigger error:", e);
+      }
+
       setIsBookingModalOpen(false);
       setCart({});
       setCustomerName("");
