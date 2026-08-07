@@ -90,6 +90,16 @@ export default function Home() {
       return 0;
     });
 
+  const [eventDate, setEventDate] = useState("");
+
+  const getSmartWhatsappUrl = (supplier: any) => {
+    const rawPhone = supplier.phone_number?.replace(/\D/g, '') || "9886000000";
+    const dateText = eventDate ? ` on ${eventDate}` : "";
+    const categoryText = activeCategory ? ` for ${activeCategory}` : "";
+    const message = `Hi ${supplier.business_name}, I saw your listing on Shamiyana. Is your equipment available${dateText}${categoryText}? Please share price and stock details.`;
+    return `https://wa.me/91${rawPhone}?text=${encodeURIComponent(message)}`;
+  };
+
   return (
     <div className="bg-[#FAF7F2] pb-28 min-h-screen font-sans text-[#1E1B17]">
 
@@ -126,8 +136,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Floating Search Bar */}
-      <div className="relative z-30 px-5 -mt-7">
+      {/* Floating Search & Date Bar */}
+      <div className="relative z-30 px-5 -mt-7 space-y-2">
         <div className="bg-white rounded-xl flex items-center h-[54px] shadow-lg shadow-[#1E1B17]/5 border border-[#E8E1DA] px-4">
           <svg className="w-[20px] h-[20px] text-[#C04D31] shrink-0 mr-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -149,6 +159,20 @@ export default function Home() {
               </svg>
             </button>
           )}
+        </div>
+
+        {/* Date Selector Bar for Quick Stock/Date Verification */}
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl p-2.5 border border-[#E8E1DA] flex items-center justify-between shadow-sm">
+          <div className="flex items-center gap-2 text-[12px] font-bold text-[#1E1B17] uppercase">
+            <span className="text-[#C04D31]">📅</span>
+            <span>Check Event Date:</span>
+          </div>
+          <input 
+            type="date"
+            value={eventDate}
+            onChange={(e) => setEventDate(e.target.value)}
+            className="bg-[#FAF7F2] border border-[#1E1B17] rounded-lg px-2.5 py-1 text-[12px] font-bold text-[#1E1B17] outline-none focus:border-[#C04D31]"
+          />
         </div>
       </div>
 
@@ -298,21 +322,21 @@ export default function Home() {
                     <div className="grid grid-cols-3 gap-2 pt-1">
                       <a 
                         href={`tel:${supplier.phone_number || "+919886000000"}`}
-                        className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg border border-[#1E1B17] text-[#1E1B17] font-semibold text-[12px] hover:bg-[#1E1B17] hover:text-white transition"
+                        className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg border border-[#1E1B17] text-[#1E1B17] font-bold text-[12px] hover:bg-[#1E1B17] hover:text-white transition"
                       >
                         📞 Call
                       </a>
                       <a 
-                        href={`https://wa.me/91${supplier.phone_number?.replace(/\D/g, '') || "9886000000"}`}
+                        href={getSmartWhatsappUrl(supplier)}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg border border-[#25D366] text-[#128C7E] bg-[#E8F8EE] font-semibold text-[12px] hover:bg-[#25D366] hover:text-white transition"
+                        className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg border border-[#25D366] text-[#128C7E] bg-[#E8F8EE] font-bold text-[12px] hover:bg-[#25D366] hover:text-white transition"
                       >
                         💬 WhatsApp
                       </a>
                       <Link 
                         href={`/supplier/${supplier.id}`}
-                        className="flex items-center justify-center gap-1 py-2 px-2 rounded-lg bg-[#C04D31] text-white font-semibold text-[12px] hover:bg-[#9F351C] transition shadow-sm"
+                        className="flex items-center justify-center gap-1 py-2 px-2 rounded-lg bg-[#C04D31] text-white font-bold text-[12px] hover:bg-[#9F351C] transition shadow-sm"
                       >
                         Book Now
                       </Link>
@@ -324,6 +348,21 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      {/* ─── Local SEO Keyword Footer ─── */}
+      <footer className="mt-12 mx-5 p-5 bg-white rounded-xl border border-[#E8E1DA] text-[12px] text-[#57423C] space-y-3">
+        <h3 className="font-heading font-bold text-[16px] uppercase text-[#1E1B17]">Popular Searches in Hubli-Dharwad</h3>
+        <p className="leading-relaxed">
+          <strong>Shamiyana Near Me:</strong> Rent heavy-duty waterproof tents, shamiyana sets, plastic chairs, dining tables, marriage stage lightings, sound systems, and catering utensils across Vidyanagar, Gokul Road, Keshwapur, Rayapur, Shirur Park, and Dharwad Main Road.
+        </p>
+        <div className="flex flex-wrap gap-2 pt-1 border-t border-[#E8E1DA]">
+          <span className="bg-[#FAF7F2] border border-[#E8E1DA] px-2 py-1 rounded text-[11px] font-semibold text-[#1E1B17]">Tent House Hubli</span>
+          <span className="bg-[#FAF7F2] border border-[#E8E1DA] px-2 py-1 rounded text-[11px] font-semibold text-[#1E1B17]">Plates for Rent Near Me</span>
+          <span className="bg-[#FAF7F2] border border-[#E8E1DA] px-2 py-1 rounded text-[11px] font-semibold text-[#1E1B17]">Chairs for Function</span>
+          <span className="bg-[#FAF7F2] border border-[#E8E1DA] px-2 py-1 rounded text-[11px] font-semibold text-[#1E1B17]">Sound System Hubli</span>
+          <span className="bg-[#FAF7F2] border border-[#E8E1DA] px-2 py-1 rounded text-[11px] font-semibold text-[#1E1B17]">Marriage Shamiyana</span>
+        </div>
+      </footer>
 
       {/* ─── Bottom Navigation ─── */}
       <div className="fixed bottom-0 left-0 w-full bg-white border-t border-[#E8E1DA] flex justify-around items-center pt-2 pb-3 z-50 shadow-lg">

@@ -252,11 +252,18 @@ export default function SupplierProfile() {
           </button>
         ) : (
           <div className="flex gap-2.5">
-            <button onClick={() => window.open(`tel:+91${supplier.phone_number}`)} className="flex-1 bg-white border border-[#1E1B17] text-[#1E1B17] font-bold py-3 rounded-xl text-[13px] flex justify-center items-center gap-2 hover:bg-[#1E1B17] hover:text-white transition">
+            <button onClick={() => window.open(`tel:+91${supplier.phone_number?.replace(/\D/g, '') || "9886000000"}`)} className="flex-1 bg-white border border-[#1E1B17] text-[#1E1B17] font-bold py-3 rounded-xl text-[13px] flex justify-center items-center gap-2 hover:bg-[#1E1B17] hover:text-white transition">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
               Call Supplier
             </button>
-            <button onClick={() => window.open(`https://wa.me/91${supplier.whatsapp_number || supplier.phone_number}`)} className="flex-[1.2] bg-[#E8F8EE] border border-[#25D366] text-[#128C7E] font-bold py-3 rounded-xl text-[13px] flex justify-center items-center gap-2 hover:bg-[#25D366] hover:text-white transition">
+            <button 
+              onClick={() => {
+                const phone = supplier.whatsapp_number?.replace(/\D/g, '') || supplier.phone_number?.replace(/\D/g, '') || "9886000000";
+                const msg = encodeURIComponent(`Hi ${supplier.business_name}, I saw your profile on Shamiyana. I want to check equipment availability and rental price per day for my event. Please call or message me back.`);
+                window.open(`https://wa.me/91${phone}?text=${msg}`, "_blank");
+              }} 
+              className="flex-[1.2] bg-[#E8F8EE] border border-[#25D366] text-[#128C7E] font-bold py-3 rounded-xl text-[13px] flex justify-center items-center gap-2 hover:bg-[#25D366] hover:text-white transition"
+            >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 2C6.49 2 2 6.49 2 12.03c0 1.777.466 3.447 1.282 4.908l-1.332 4.873 4.996-1.31C8.36 21.284 10.134 21.75 12.03 21.75 17.57 21.75 22 17.26 22 11.72 22 6.18 17.571 2 12.031 2z"/></svg>
               WhatsApp
             </button>
