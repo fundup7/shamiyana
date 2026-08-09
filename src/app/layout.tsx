@@ -26,11 +26,18 @@ export const metadata: Metadata = {
     "Event utensils rental Hubli",
     "Sound and lighting rental Hubli",
     "Marriage tent house near me",
-    "Shamiyana booking Hubli"
+    "Shamiyana booking Hubli",
+    "tent house hubli",
+    "tent house dharwad",
+    "best tent house in hubli",
+    "shamiyana rental contact number hubli"
   ],
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+  },
   metadataBase: new URL("https://hublishamiyana.vercel.app"),
   openGraph: {
-    title: "Shamiyana Near Me | Direct Local Tent & Event Gear Rentals",
+    title: "Shamiyana Near Me | Tent House & Event Rentals Hubli-Dharwad",
     description: "Rent tents, chairs, plates, lighting & sound equipment directly from verified local suppliers in Hubli-Dharwad. Instant phone & WhatsApp bookings.",
     url: "https://hublishamiyana.vercel.app",
     siteName: "Shamiyana",
