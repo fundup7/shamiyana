@@ -15,9 +15,11 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Shamiyana Near Me | Event & Tent House Rental Hubli-Dharwad",
-  description: "Find verified Shamiyana, tent house, chairs, utensils, lighting & catering rentals near you in Hubli-Dharwad. Call or WhatsApp local vendors directly for instant availability.",
+  title: "PandalOnline | Event & Tent House Rental Hubli-Dharwad",
+  description: "Find verified Shamiyana, tent house, pandal, chairs, utensils, lighting & catering rentals near you in Hubli-Dharwad on PandalOnline. Call or WhatsApp local vendors directly for instant availability.",
   keywords: [
+    "PandalOnline",
+    "Pandal online Hubli",
     "Shamiyana near me",
     "Shamiyana Hubli",
     "Tent house rental Hubli",
@@ -37,10 +39,10 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://hublishamiyana.vercel.app"),
   openGraph: {
-    title: "Shamiyana Near Me | Tent House & Event Rentals Hubli-Dharwad",
-    description: "Rent tents, chairs, plates, lighting & sound equipment directly from verified local suppliers in Hubli-Dharwad. Instant phone & WhatsApp bookings.",
+    title: "PandalOnline | Tent House & Event Rentals Hubli-Dharwad",
+    description: "Rent tents, pandal, chairs, plates, lighting & sound equipment directly from verified local suppliers in Hubli-Dharwad on PandalOnline.",
     url: "https://hublishamiyana.vercel.app",
-    siteName: "Shamiyana",
+    siteName: "PandalOnline",
     locale: "en_IN",
     type: "website",
   },
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Shamiyana - Event Rental Marketplace Hubli",
+  "name": "PandalOnline - Event & Tent House Rental Marketplace Hubli",
   "image": "https://hublishamiyana.vercel.app/images/hero.png",
   "@id": "https://hublishamiyana.vercel.app",
   "url": "https://hublishamiyana.vercel.app",

@@ -47,19 +47,19 @@ export async function sendTelegramBookingNotification(payload: {
     : 'No item details';
 
   const htmlMessage = 
-`🎪 <b>NEW SHAMIYANA BOOKING!</b> 🎪
+`🎪 <b>NEW PANDALONLINE BOOKING!</b> 🎪
 
 👤 <b>Customer:</b> ${payload.customerName}
 📞 <b>Phone:</b> <a href="tel:${payload.customerPhone}">${payload.customerPhone}</a>
 📅 <b>Event Date:</b> ${payload.eventDate}
-🏪 <b>Supplier:</b> ${payload.supplierName || 'Shamiyana Hubli'}
+🏪 <b>Supplier:</b> ${payload.supplierName || 'PandalOnline Hubli'}
 
 📦 <b>Items Requested:</b>
 ${itemsList}
 
 💰 <b>Total Rental:</b> ₹${payload.totalPrice}/day
 
-⚡ <i>Reply to customer or check your Shamiyana Dashboard!</i>`;
+⚡ <i>Reply to customer or check your PandalOnline Dashboard!</i>`;
 
   const results = [];
   for (const chatId of Array.from(targetChatIds)) {

@@ -96,7 +96,7 @@ export default function Home() {
     const rawPhone = supplier.phone_number?.replace(/\D/g, '') || "9886000000";
     const dateText = eventDate ? ` on ${eventDate}` : "";
     const categoryText = activeCategory ? ` for ${activeCategory}` : "";
-    const message = `Hi ${supplier.business_name}, I saw your listing on Shamiyana. Is your equipment available${dateText}${categoryText}? Please share price and stock details.`;
+    const message = `Hi ${supplier.business_name}, I saw your listing on PandalOnline. Is your equipment available${dateText}${categoryText}? Please share price and stock details.`;
     return `https://wa.me/91${rawPhone}?text=${encodeURIComponent(message)}`;
   };
 
@@ -107,7 +107,7 @@ export default function Home() {
       <div className="relative h-[320px]">
         <img 
           src="/images/hero.png" 
-          alt="Shamiyana event setup" 
+          alt="PandalOnline event setup" 
           className="absolute inset-0 w-full h-full object-cover rounded-b-3xl"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1E1B17]/70 via-[#1E1B17]/40 to-[#FAF7F2] rounded-b-3xl" />
@@ -116,9 +116,9 @@ export default function Home() {
         <div className="relative z-10 flex items-center justify-between px-5 pt-5">
           <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 bg-[#C04D31] text-white rounded-xl flex items-center justify-center shadow-md font-heading font-bold text-xl">
-              S
+              P
             </div>
-            <span className="font-heading font-bold text-white text-[22px] tracking-wide drop-shadow-sm uppercase">Shamiyana</span>
+            <span className="font-heading font-bold text-white text-[22px] tracking-wide drop-shadow-sm uppercase">PandalOnline</span>
           </div>
           <div className="bg-[#FAF7F2]/90 backdrop-blur-md px-3 py-1 rounded-full border border-[#E8E1DA] text-[12px] font-semibold text-[#1E1B17] flex items-center gap-1 shadow-sm">
             <span className="text-[#C04D31]">📍</span> Hubli - Dharwad

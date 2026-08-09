@@ -259,7 +259,7 @@ export default function SupplierProfile() {
             <button 
               onClick={() => {
                 const phone = supplier.whatsapp_number?.replace(/\D/g, '') || supplier.phone_number?.replace(/\D/g, '') || "9886000000";
-                const msg = encodeURIComponent(`Hi ${supplier.business_name}, I saw your profile on Shamiyana. I want to check equipment availability and rental price per day for my event. Please call or message me back.`);
+                const msg = encodeURIComponent(`Hi ${supplier.business_name}, I saw your profile on PandalOnline. I want to check equipment availability and rental price per day for my event. Please call or message me back.`);
                 window.open(`https://wa.me/91${phone}?text=${msg}`, "_blank");
               }} 
               className="flex-[1.2] bg-[#E8F8EE] border border-[#25D366] text-[#128C7E] font-bold py-3 rounded-xl text-[13px] flex justify-center items-center gap-2 hover:bg-[#25D366] hover:text-white transition"
